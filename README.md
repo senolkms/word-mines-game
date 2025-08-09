@@ -27,7 +27,3 @@ Oyuncular harflerden kelimeler türetir, puan toplar ve rastgele yerleştirilmi�
 ✅ **Joker Harf** – Joker kullanarak eksik harfi tamamlayabilirsin (0 puan değerinde).  
 ✅ **Bonuslar** – Bölge yasağı, harf yasağı, ekstra hamle hakkı.  
 ✅ **Oyun Sonu Kazanan Belirleme** – En yüksek puanı toplayan kazanır.  
-
----
-
-## 📂 Proje Klasör Yapısı
