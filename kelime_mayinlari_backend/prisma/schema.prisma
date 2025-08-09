@@ -1,0 +1,55 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  email     String   @unique
+  password  String
+  successRate  Float    @default(0) // Başarı yüzdesi (0-100 arası)
+  gamesWon     Int      @default(0)
+  gamesPlayed  Int      @default(0)
+
+  player1Games Game[] @relation("Player1")
+  player2Games Game[] @relation("Player2")
+}
+
+
+model Game {
+  id              Int      @id @default(autoincrement())
+  duration        Int
+  status          String   @default("waiting")
+  player1Id       Int
+  player2Id       Int?      // ikinci oyuncu opsiyonel
+  player1Score     Int     @default(0)
+  player2Score     Int     @default(0)
+  currentTurnId   Int?      // Sıra kimde?
+  boardState      Json?     // Oyun tahtası durumu
+  letterPool      Json?     // 🟡 Kalan havuz
+  player1Letters  Json?     // 🟢 Oyuncu 1 harfleri
+  player2Letters  Json?     // 🔵 Oyuncu 2 harfleri
+  mines           Json?    // 🧨 Mayın ve Ödüller
+  player1Rewards     Json?     // 🟢 Bu iki alan eksikse ekle!
+  player2Rewards     Json?
+
+  blockZone         String?      // 'left' | 'right' | null
+  frozenLettersOpponent String[]     // Rakibin donacak harf sayısı (örneğin 2)
+  extraTurnUserId   Int?         // Ekstra hamle hakkı olan oyuncunun ID'si
+
+  createdAt       DateTime @default(now())
+
+  lastMoveTime    DateTime? @default(now())
+  winnerId        Int?
+  endedAt         DateTime?
+ 
+  player1         User     @relation("Player1", fields: [player1Id], references: [id])
+  player2         User?    @relation("Player2", fields: [player2Id], references: [id])
+}
+

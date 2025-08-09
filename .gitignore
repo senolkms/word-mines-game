@@ -1,0 +1,43 @@
+# ---- Flutter
+.buildlog/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.melos_tool/
+coverage/
+build/
+ios/Pods/
+android/.gradle/
+android/app/build/
+**/Generated.xcconfig
+**/Flutter.podspec
+
+# ---- Node.js (backend)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+logs/
+*.log
+dist/
+.tmp/
+coverage/
+
+# ---- Ortak
+.env
+.env.*
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.iml
+
+# ---- Üretilmiş paketler/çıktılar (asla versiyonlama)
+*.apk
+*.aab
+*.ipa
+*.zip
+*.tar
+*.tgz
